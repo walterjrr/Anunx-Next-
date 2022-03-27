@@ -7,8 +7,7 @@ import {
   Button,
   IconButton,
 } from "@material-ui/core";
-
-import MenuIcon from "@material-ui/icons/Menu";
+import { Menu } from "@material-ui/icons";
 
 export default function ButtonAppBar() {
   return (
@@ -22,7 +21,7 @@ export default function ButtonAppBar() {
             aria-label='menu'
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <Menu />
           </IconButton>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             News
