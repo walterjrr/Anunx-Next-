@@ -9,6 +9,10 @@ import {
     MenuItem,
     Button,
     IconButton,
+    FormControl,
+    InputLabel,
+    OutlinedInput,
+    InputAdornment,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { DeleteForever } from "@material-ui/icons";
@@ -55,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: "cover",
         margin: '0 15px 15px 0',
         backgroundPosition: "center center",
-        
+
 
         "& $mainImage": {
             backgroundColor: "blue",
@@ -192,14 +196,14 @@ const Publish = () => {
                                 >
                                     {
                                         index === 0
-                                        ?   <Box className={classes.mainImage}>
+                                            ? <Box className={classes.mainImage}>
                                                 <Typography variant='body2' color='secondary'>
-                                                Principal
+                                                    Principal
                                                 </Typography>
                                             </Box>
-                                        : null
+                                            : null
                                     }
-                                    
+
                                     <Box className={classes.mask}>
                                         <IconButton color='secondary' onClick={() => handleRemoveFile(file.name)}>
                                             <DeleteForever fontSize='large' />
@@ -222,6 +226,25 @@ const Publish = () => {
                         Escreva os detalhes do que está vendendo
                     </Typography>
                     <TextField multiline rows={6} variant='outlined' fullWidth />
+                </Box>
+            </Container>
+
+            <Container maxWidth='md' className={classes.boxContainer}>
+                <Box className={classes.box}>
+                    <Typography component='h6' variant='h6' color='textPrimary'>
+                        Preço
+                    </Typography>
+                    <br />
+                    <FormControl fullWidth variant='outlined'>
+                        <InputLabel>Valor</InputLabel>
+                        <OutlinedInput
+                            onChange={() => { }}
+                            startAdornment={
+                                <InputAdornment position='start'>R$</InputAdornment>
+                            }
+                            labelWidth={40}
+                        />
+                    </FormControl>
                 </Box>
             </Container>
 
