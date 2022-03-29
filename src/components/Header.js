@@ -1,4 +1,6 @@
-import * as React from "react";
+import * as React from "react"
+import { useState } from "react";
+import Link from 'next/link'
 import {
   AppBar,
   Box,
@@ -6,29 +8,81 @@ import {
   Typography,
   Button,
   IconButton,
+  Container,
+  Avatar,
+  Menu,
+  MenuItem,
+  Divider,
 } from "@material-ui/core";
-import { Menu } from "@material-ui/icons";
+
+const useStyles = makeStyles((theme) => ({
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  userName: {
+    marginLeft: 6,
+  },
+  divider: {
+    margin: "8px 0",
+  },
+}));
+
+import { makeStyles } from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
 
 export default function ButtonAppBar() {
+  const [anchorUserMenu, setAnchorUserMenu] = React.useState(false)
+  const classes = useStyles();
+
+  const openUserMenu = Boolean(anchorUserMenu)
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static'>
-        <Toolbar>
-          <IconButton
-            size='large'
-            edge='start'
-            color='inherit'
-            aria-label='menu'
-            sx={{ mr: 2 }}
-          >
-            <Menu />
-          </IconButton>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Button color='inherit'>Login</Button>
-        </Toolbar>
+    <>
+      <AppBar position='static' elevation={3}>
+        <Container maxWidth="lg">
+          <Toolbar>
+            <Typography variant='h6' className={classes.title}>
+              Anunx
+            </Typography>
+            <Link href="/user/publish" passHref>
+              <Button color='inherit' variant="outlined">Anunciar e Vender</Button>
+            </Link>
+
+            <IconButton color="secondary" onClick={(e) => setAnchorUserMenu(e.currentTarget)}>
+              {
+                true === false
+                ? <Avatar src="" />
+                : <AccountCircle />
+              }
+              <Typography variant="subtitle2" color="secondary" className={classes.userName}>
+                Walter Jr
+              </Typography>
+            </IconButton>
+            <Menu
+              anchorEl={anchorUserMenu}
+              open={openUserMenu}
+              onClose={() => setAnchorUserMenu(null)}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <Link href="/user/dashboard" passHref>
+                <MenuItem>Meus Anuncios</MenuItem>
+              </Link>
+
+              <Link href="/user/publish" pasHref> 
+                <MenuItem>publicar novo anuncio</MenuItem>
+              </Link>
+              <Divider className={classes.divider}/>
+              <MenuItem>Sair</MenuItem>
+            </Menu>
+          </Toolbar>
+        </Container>
       </AppBar>
-    </Box>
+    </>
   );
 }
