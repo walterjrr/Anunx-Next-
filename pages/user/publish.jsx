@@ -113,7 +113,7 @@ const Publish = () => {
     const classes = useStyles();
     return (
         <TemplateDefault>
-            <Container maxWidth='sm' className={classes.container}>
+            <Container maxWidth='sm'>
                 <Typography component='h1' variant='h2' align='center' color='primary'>
                     Publicar Anúncio
                 </Typography>
