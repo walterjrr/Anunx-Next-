@@ -9,6 +9,7 @@ import { Avatar,
     Typography } from '@material-ui/core'
 import Templatedefault from '../src/templates/Default'
 import { makeStyles } from '@material-ui/core/styles'
+import Carousel from 'react-material-ui-carousel'
 
 const useStyles = makeStyles(theme => ({
     box: {
@@ -24,6 +25,12 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 'bold',
         marginBottom: 15,
         display: 'block'
+    },
+    card: {
+        height: '100%'
+    },
+    cardMedia: {
+        paddingTop: '56%'
     }
 }))
 
@@ -35,7 +42,31 @@ const Product = () => {
                 <Grid container spacing={3}>
                     <Grid item xs={8}>
                         <Box className={classes.box}>
-                            Carrossel
+                            <Carousel
+                                autoPlay={false}
+                                navButtonsProps={{
+                                    style: {
+                                        color: 'white'
+                                    }
+                                }}
+                                animation="slide"
+                            >
+                                <Card className={classes.card}>
+                                    <CardMedia 
+                                    className={classes.CardMedia}
+                                    image="https://source.unsplash.com/random?a=1"
+                                    title="Titulo da imagem"
+                                    />
+                                </Card>
+
+                                <Card className={classes.card}>
+                                    <CardMedia 
+                                    className={classes.CardMedia}
+                                    image="https://source.unsplash.com/random?a=2"
+                                    title="Titulo da imagem"
+                                    />
+                                </Card>
+                            </Carousel>
                         </Box>
 
                         <Box className={classes.box} textAlign="left">
