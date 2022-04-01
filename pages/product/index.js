@@ -7,7 +7,7 @@ import { Avatar,
     Container,
     Grid,
     Typography } from '@material-ui/core'
-import Templatedefault from '../src/templates/Default'
+import Templatedefault from '../../src/templates/Default'
 import { makeStyles } from '@material-ui/core/styles'
 import Carousel from 'react-material-ui-carousel'
 
@@ -53,15 +53,15 @@ const Product = () => {
                             >
                                 <Card className={classes.card}>
                                     <CardMedia 
-                                    className={classes.CardMedia}
-                                    image="https://source.unsplash.com/random?a=1"
+                                    className={classes.cardMedia}
+                                    image="https://source.unsplash.com/random"
                                     title="Titulo da imagem"
                                     />
                                 </Card>
 
                                 <Card className={classes.card}>
                                     <CardMedia 
-                                    className={classes.CardMedia}
+                                    className={classes.cardMedia}
                                     image="https://source.unsplash.com/random?a=2"
                                     title="Titulo da imagem"
                                     />
