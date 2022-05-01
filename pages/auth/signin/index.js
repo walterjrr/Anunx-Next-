@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { Formik } from "formik";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { signIn, useSession } from "next-auth/client";
+import Image from "next/image"
+import { Formik } from "formik"
+import axios from "axios"
+import { useRouter } from "next/router"
+import { signIn, useSession } from "next-auth/client"
 
 import {
   Box,
@@ -14,35 +14,35 @@ import {
   FormHelperText,
   Button,
   CircularProgress,
-} from "@material-ui/core";
+} from "@material-ui/core"
 
-import TemplateDefault from "../../../src/templates/Default";
-import { initialValues, validationSchema } from "./formValues";
-import useToasty from "../../../src/contexts/Toasty";
-import useStyles from "./styles";
-import { Alert } from "@material-ui/lab";
+import TemplateDefault from "../../../src/templates/Default"
+import { initialValues, validationSchema } from "./formValues"
+import useToasty from "../../../src/contexts/Toasty"
+import useStyles from "./styles"
+import { Alert } from "@material-ui/lab"
 
-const Signin = () => {
-  const classes = useStyles();
-  const router = useRouter();
-  const { setToasty } = useToasty();
-  const [session] = useSession();
+const Signin = ({ APP_URL }) => {
+  const classes = useStyles()
+  const router = useRouter()
+  const { setToasty } = useToasty()
+  const [session] = useSession()
 
-  console.log(session);
+  console.log(session)
 
   const handleGoogleLogin = () => {
     signIn("google", {
-      callbackUrl: "http://localhost:3000/user/dashboard",
-    });
-  };
+      callbackUrl: `${APP_URL}/user/dashboard`,
+    })
+  }
 
   const handleFormSubmit = (values) => {
     signIn("credentials", {
       email: values.email,
       password: values.password,
-      callbackUrl: "http://localhost:3000/user/dashboard",
-    });
-  };
+      callbackUrl: `${APP_URL}/user/dashboard`,
+    })
+  }
 
   return (
     <TemplateDefault>
@@ -152,13 +152,19 @@ const Signin = () => {
                     </Button>
                   )}
                 </form>
-              );
+              )
             }}
           </Formik>
         </Box>
       </Container>
     </TemplateDefault>
-  );
-};
+  )
+}
 
-export default Signin;
+Signin.getServerSideProps = async function () {
+  return {
+    APP_URL: process.env.APP_URL,
+  }
+}
+
+export default Signin
